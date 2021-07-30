@@ -10,7 +10,9 @@ import UIKit
 
 class FabricRequest: NSObject {
     
-    class func request(tagged stringTagged: String?, numberOfPageToLoad: Int, withBlock completionHandler: @escaping (_ data: Data?) -> Void) {
+    class func request(tagged stringTagged: String?,
+					   numberOfPageToLoad: Int,
+					   withBlock completionHandler: @escaping (_ data: Data?) -> Void) {
         let protocolHostPath = "https://api.stackexchange.com/2.2/questions"
         let parametrs = "order=desc&sort=activity&site=stackoverflow&key=G*0DJzE8SfBrKn4tMej85Q(("
         let stringURL = protocolHostPath + "?" + parametrs + "&pagesize=50&tagged=" + stringTagged! + String(format: "&page=%ld", numberOfPageToLoad)
@@ -30,7 +32,8 @@ class FabricRequest: NSObject {
         }
     }
     
-    class func request(withQuestionID questionID: Int, withBlock completionHandler: @escaping (_ data: Data?) -> Void) {
+    class func request(withQuestionID questionID: Int,
+					   withBlock completionHandler: @escaping (_ data: Data?) -> Void) {
         let protocolHostPath = "https://api.stackexchange.com/2.2/questions"
         let parametrs = "order=desc&sort=activity&site=stackoverflow&key=G*0DJzE8SfBrKn4tMej85Q(("
         let stringURL = String(format: "%@/%li/answers?%@&filter=!9YdnSMKKT", protocolHostPath, questionID, parametrs)

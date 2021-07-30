@@ -24,7 +24,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var trailingTableViewLayoutConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
-        tableView.register(UINib(nibName: "QuestionTableViewCell", bundle: nil), forCellReuseIdentifier: kCellIdentifier)
+        tableView.register(UINib(nibName: "QuestionTableViewCell", bundle: nil),
+						   forCellReuseIdentifier: kCellIdentifier)
         numberOfPageToLoad = 1
         addRefreshControlOnTabelView()
         settingDynamicHeightForCell()

@@ -22,6 +22,7 @@ class StoredData: Codable {
         try container.encode(date, forKey: .date)
         try container.encode(data, forKey: .data)
     }
+	
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         key = try container.decode(String.self, forKey: .key)
@@ -38,4 +39,5 @@ class StoredData: Codable {
         self.date = date
         self.data = data
     }
+	
 }
