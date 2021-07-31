@@ -6,44 +6,54 @@
 //  Copyright © 2019 . All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class FabricRequest: NSObject {
-    
-    class func request(tagged stringTagged: String?,
-					   numberOfPageToLoad: Int,
-					   withBlock completionHandler: @escaping (_ data: Data?) -> Void) {
-        let protocolHostPath = "https://api.stackexchange.com/2.2/questions"
-        let parametrs = "order=desc&sort=activity&site=stackoverflow&key=G*0DJzE8SfBrKn4tMej85Q(("
-        let stringURL = protocolHostPath + "?" + parametrs + "&pagesize=50&tagged=" + stringTagged! + String(format: "&page=%ld", numberOfPageToLoad)
-        if CacheWithTimeInterval.objectForKey(stringURL) == nil {
-            let stringURL = protocolHostPath + "?" + parametrs + "&pagesize=50&tagged=" + stringTagged! + String(format: "&page=%ld", numberOfPageToLoad)
-            var request = URLRequest(url: URL(string: stringURL)!)
-            request.httpMethod = "GET"
-            let defaultConfiguration = URLSessionConfiguration.default
-            let defaultSession = URLSession(configuration: defaultConfiguration)
-            let task: URLSessionDataTask = defaultSession.dataTask(with: request) { (data, response, error) in
-                completionHandler(data)
-                CacheWithTimeInterval.set(data: data, for: stringURL)
-            }
-            task.resume()
-        } else {
-            completionHandler(CacheWithTimeInterval.objectForKey(stringURL))
-        }
-    }
-    
-    class func request(withQuestionID questionID: Int,
-					   withBlock completionHandler: @escaping (_ data: Data?) -> Void) {
-        let protocolHostPath = "https://api.stackexchange.com/2.2/questions"
-        let parametrs = "order=desc&sort=activity&site=stackoverflow&key=G*0DJzE8SfBrKn4tMej85Q(("
-        let stringURL = String(format: "%@/%li/answers?%@&filter=!9YdnSMKKT", protocolHostPath, questionID, parametrs)
-        var request = URLRequest(url: URL(string: stringURL)!)
-        request.httpMethod = "GET"
-        let defaultConfiguration = URLSessionConfiguration.default
-        let defaultSession = URLSession(configuration: defaultConfiguration, delegate: nil, delegateQueue: OperationQueue.main)
-        let task: URLSessionDataTask = defaultSession.dataTask(with: request) { (data, response, error) in
-            completionHandler(data)
-        }
-        task.resume()
-    }
+struct NetworkRequest {
+	static let basePath: String = "https://api.stackexchange.com/2.2/questions"
+	static let parametrs: String = "order=desc&sort=activity&site=stackoverflow&key=G*0DJzE8SfBrKn4tMej85Q(("
+	static let cash: Cacheable = CacheWithTimeInterval()
+	
+	static func request(tagged stringTagged: String?,
+						numberOfPageToLoad: Int,
+						withBlock completionHandler: @escaping (_ data: Data?) -> Void) {
+		
+		let stringURL = NetworkRequest.basePath + "?" + NetworkRequest.parametrs + "&pagesize=50&tagged=" +
+			stringTagged! + String(format: "&page=%ld", numberOfPageToLoad)
+		
+		guard let url = URL(string: stringURL) else {
+			completionHandler(nil)
+			return
+		}
+		
+		if cash.objectForKey(stringURL) == nil {
+			NetworkRequest.getRequest(by: url) { data in
+				completionHandler(data)
+				cash.set(data: data, for: stringURL)
+			}
+		} else {
+			completionHandler(cash.objectForKey(stringURL))
+		}
+		
+	}
+	
+	static func request(withQuestionID questionID: Int,
+						withBlock completionHandler: @escaping (_ data: Data?) -> Void) {
+		let stringURLQuestionID = String(format: "%@/%li/answers?%@&filter=!9YdnSMKKT", NetworkRequest.basePath, questionID, NetworkRequest.parametrs)
+		guard let url = URL(string: stringURLQuestionID) else {
+			completionHandler(nil)
+			return
+		}
+		NetworkRequest.getRequest(by: url) { data in
+			completionHandler(data)
+		}
+	}
+	
+	private static func getRequest(by url: URL, completionHandler: @escaping (_ data: Data?) -> Void) {
+		var request = URLRequest(url: url)
+		request.httpMethod = "GET"
+		let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+			completionHandler(data)
+		}
+		task.resume()
+	}
 }

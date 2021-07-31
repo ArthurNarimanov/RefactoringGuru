@@ -11,16 +11,17 @@ import UIKit
 class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let kCellIdentifier = "CellForQuestion"
-    @IBOutlet var tableView: UITableView!
     var activityIndicatorView: UIActivityIndicatorView!
-    var questions: [Item]? = []
+    var questions: [Item] = []
     var refreshControl: UIRefreshControl?
     var loadMoreStatus = false
     var numberOfPageToLoad: Int = 0
     var requestedTag = ""
-    @IBOutlet weak var leadingTabelViewLayoutConstraint: NSLayoutConstraint!
     var panRecognizer: UIPanGestureRecognizer?
     var screenEdgePanRecognizer: UIScreenEdgePanGestureRecognizer?
+	
+	@IBOutlet var tableView: UITableView!
+	@IBOutlet weak var leadingTabelViewLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var trailingTableViewLayoutConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -34,8 +35,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         requestedTag = ArrayOfTags.shared[0]
         definesPresentationContext = true
         questions = [Item]()
-        FabricRequest.request(tagged: requestedTag, numberOfPageToLoad: numberOfPageToLoad) { (data) in
-            self.reload(inTableView: data, removeAllObjects: true)
+        NetworkRequest.request(tagged: requestedTag, numberOfPageToLoad: numberOfPageToLoad) { (items) in
+			self.reload(by: items, removeAllObjects: true)
         }
         numberOfPageToLoad += 1
     }
@@ -43,7 +44,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indexPath: IndexPath? = tableView.indexPathForSelectedRow
         let detailViewController = (segue.destination as? UINavigationController)?.topViewController as? DetailViewController
-        let item = questions?[indexPath?.row ?? 0]
+        let item = questions[indexPath?.row ?? 0]
         detailViewController?.currentQuestion = item
         detailViewController?.loadAnswers()
         detailViewController?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -74,8 +75,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @objc func reloadData() {
         numberOfPageToLoad = 1
-        FabricRequest.request(tagged: requestedTag, numberOfPageToLoad: numberOfPageToLoad) { (data) in
-            self.reload(inTableView: data, removeAllObjects: true)
+        NetworkRequest.request(tagged: requestedTag, numberOfPageToLoad: numberOfPageToLoad) { (items) in
+            self.reload(by: items, removeAllObjects: true)
         }
         numberOfPageToLoad += 1
         if refreshControl != nil {
@@ -89,12 +90,12 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func reload(inTableView jsonData: Data?, removeAllObjects: Bool) {
+    func reload(by items: [Item]?, removeAllObjects: Bool) {
         if removeAllObjects {
             questions = [Item]()
         }
-        if let items = try? JSONDecoder().decode(Question.self, from: jsonData!).items {
-            questions = questions! + items!
+		if let items = items {
+			questions.append(contentsOf: items)
         }
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
@@ -103,16 +104,16 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if questions?.count == 0 {
+		if questions.count == 0 {
             activityIndicatorView.startAnimating()
         }
-        return questions?.count ?? 0
+		return questions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier, for: indexPath) as? QuestionTableViewCell
-        if questions?.count ?? 0 > 0 {
-            cell?.fill(questions?[indexPath.row])
+		if questions.count > 0 {
+            cell?.fill(questions[indexPath.row])
         }
         return cell!
     }
@@ -130,8 +131,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             activityIndicatorView.center = CGPoint(x: bounds.size.width / 2, y: bounds.size.height - 50)
             activityIndicatorView.startAnimating()
             loadMoreStatus = true
-            FabricRequest.request(tagged: requestedTag, numberOfPageToLoad: numberOfPageToLoad) { (data) in
-                self.reload(inTableView: data, removeAllObjects: false)
+            NetworkRequest.request(tagged: requestedTag, numberOfPageToLoad: numberOfPageToLoad) { (items) in
+                self.reload(by: items, removeAllObjects: false)
                 self.loadMoreStatus = false
                 self.numberOfPageToLoad += 1
                 self.activityIndicatorView.center = CGPoint(x: bounds.size.width / 2, y: bounds.size.height / 2)
@@ -144,8 +145,8 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         activityIndicatorView.startAnimating()
         requestedTag = notification?.object as! String
         numberOfPageToLoad = 1
-        FabricRequest.request(tagged: requestedTag, numberOfPageToLoad: numberOfPageToLoad) { (data) in
-            self.reload(inTableView: data, removeAllObjects: true)
+        NetworkRequest.request(tagged: requestedTag, numberOfPageToLoad: numberOfPageToLoad) { (items) in
+            self.reload(by: items, removeAllObjects: true)
         }
         numberOfPageToLoad += 1
     }

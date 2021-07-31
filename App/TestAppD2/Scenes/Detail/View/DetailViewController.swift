@@ -66,8 +66,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: - Public
     func loadAnswers() {
-        FabricRequest.request(withQuestionID: currentQuestion.question_id!) { data in
-            self.reload(inTableView: data)
+        NetworkRequest.request(withQuestionID: currentQuestion.question_id!) { answer in
+            self.reload(by: answer)
         }
     }
 
@@ -95,11 +95,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.estimatedRowHeight = 100
     }
     
-    func reload(inTableView jsonData: Data?) {
+    func reload(by answer: Answer?) {
         answers = [AnswerItem]()
-        if let answerModel = try? JSONDecoder().decode(Answer.self, from: jsonData!) {
-            answers = answerModel.items
+        if let answer = answer {
+            answers = answer.items
         }
+		
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
             self.activityIndicatorView.stopAnimating()
