@@ -8,36 +8,54 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
+final class ContainerViewController: UIViewController {
 
-    @IBOutlet weak var tableContainerView: UIView!
-    @IBOutlet weak var mainContainerView: UIView!
-    @IBOutlet weak var leadingTabelViewLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var trailingTableViewLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var containerNavigationItem: UINavigationItem!
+    @IBOutlet private weak var tableContainerView: UIView!
+    @IBOutlet private weak var mainContainerView: UIView!
+    @IBOutlet private weak var leadingTableViewLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var trailingTableViewLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var containerNavigationItem: UINavigationItem!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        navigationItem.title = "objective-c"
-        NotificationCenter.default.addObserver(self, selector: #selector(self.requestedTagNotification(_:)), name: NSNotification.Name("RequestedTagNotification"), object: nil)
+		super.viewDidLoad()
+		navigationItem.title = Tags.objc.rawValue
+        NotificationCenter.default.addObserver(self,
+											   selector: #selector(self.requestedTagNotification(_:)),
+											   name: NSNotification.Name("RequestedTagNotification"),
+											   object: nil)
     }
 
+	deinit {
+		NotificationCenter.default.removeObserver(self,
+												  name: NSNotification.Name("RequestedTagNotification"),
+												  object: nil)
+	}
+	
     @objc func requestedTagNotification(_ notification: NSNotification) {
-        let requestedTag = notification.object as! String
+		let tag = notification.object as? String
+		let requestedTag = tag ?? Tags.objc.rawValue
         title = requestedTag
     }
     
-    @IBAction func menu(_ sender: Any) {
-        if leadingTabelViewLayoutConstraint.constant == 0 {
-            leadingTabelViewLayoutConstraint.constant = UIScreen.main.bounds.size.width / 2
-            trailingTableViewLayoutConstraint.constant = UIScreen.main.bounds.size.width * -0.5
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .layoutSubviews, animations: {
+    @IBAction private func menu(_ sender: Any) {
+        if leadingTableViewLayoutConstraint.constant == 0 {
+			let size: CGSize = UIScreen.main.bounds.size
+            leadingTableViewLayoutConstraint.constant = size.width / 2
+            trailingTableViewLayoutConstraint.constant = size.width * -0.5
+            UIView.animate(withDuration: 0.3,
+						   delay: 0.0,
+						   options: .layoutSubviews,
+						   animations: {
                 self.view.layoutIfNeeded()
             })
         } else {
-            leadingTabelViewLayoutConstraint.constant = 0
+            leadingTableViewLayoutConstraint.constant = 0
             trailingTableViewLayoutConstraint.constant = 0
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .layoutSubviews, animations: {
+            UIView.animate(withDuration: 0.3,
+						   delay: 0.0,
+						   options: .layoutSubviews,
+						   animations: {
                 self.view.layoutIfNeeded()
             })
         }

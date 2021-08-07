@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i8m-g4-j2q">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -72,18 +70,18 @@
                         <viewControllerLayoutGuide type="top" id="2YB-3d-mGE"/>
                         <viewControllerLayoutGuide type="bottom" id="ca1-oK-QZh"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3Lt-Jc-oBX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="3Lt-Jc-oBX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xOO-Qd-6an">
-                                <rect key="frame" x="-207" y="0.0" width="207" height="852"/>
+                                <rect key="frame" x="-300" y="0.0" width="300" height="556"/>
                                 <connections>
                                     <segue destination="6eA-1w-96r" kind="embed" id="a6Z-Aq-m4s"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zc0-vP-dB0">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="980"/>
                                 <connections>
                                     <segue destination="PUx-nP-rFy" kind="embed" id="OqO-7Z-Igb"/>
                                 </connections>
@@ -114,7 +112,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="containerNavigationItem" destination="ia8-X7-gX6" id="qmg-Ic-gQ3"/>
-                        <outlet property="leadingTabelViewLayoutConstraint" destination="ZI9-Lv-ice" id="Cay-4j-qGx"/>
+                        <outlet property="leadingTableViewLayoutConstraint" destination="ZI9-Lv-ice" id="Cay-4j-qGx"/>
                         <outlet property="mainContainerView" destination="zc0-vP-dB0" id="4sP-91-G47"/>
                         <outlet property="tableContainerView" destination="xOO-Qd-6an" id="reH-6M-l0q"/>
                         <outlet property="trailingTableViewLayoutConstraint" destination="sNG-k6-sYK" id="xat-j1-l8K"/>
@@ -149,11 +147,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Ebc-Ha-Ap0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="z8Y-u4-NsJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="798"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dQP-Ji-mPT">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="798"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="832"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <sections/>
                                 <connections>
@@ -210,14 +208,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8bV-C3-nLQ">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="556"/>
+                                <rect key="frame" x="0.0" y="0.0" width="207" height="852"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellForMenuTableView" id="F5j-W6-YGU">
-                                        <rect key="frame" x="0.0" y="28" width="300" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="207" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F5j-W6-YGU" id="cfU-je-XpI">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
