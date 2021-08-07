@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64253D3426BEDA3D004B7CE7 /* AttributedString+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64253D3326BEDA3D004B7CE7 /* AttributedString+DateFormatter.swift */; };
 		642A27BD26B4851400003BF2 /* MainBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A27BC26B4851400003BF2 /* MainBuild.swift */; };
 		64AE879A26BE8962008D59E9 /* IdentifiableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AE879926BE8962008D59E9 /* IdentifiableClass.swift */; };
 		64AE879E26BE8CBD008D59E9 /* Closures+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AE879D26BE8CBD008D59E9 /* Closures+Typealias.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64253D3326BEDA3D004B7CE7 /* AttributedString+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedString+DateFormatter.swift"; sourceTree = "<group>"; };
 		642A27BC26B4851400003BF2 /* MainBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuild.swift; sourceTree = "<group>"; };
 		64AE879926BE8962008D59E9 /* IdentifiableClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableClass.swift; sourceTree = "<group>"; };
 		64AE879D26BE8CBD008D59E9 /* Closures+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Closures+Typealias.swift"; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64253D3226BED9F6004B7CE7 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				64253D3326BEDA3D004B7CE7 /* AttributedString+DateFormatter.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
 		642A27BB26B484B900003BF2 /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +96,7 @@
 		64AE879726BE8913008D59E9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				64253D3226BED9F6004B7CE7 /* String */,
 				6492E74D26BE8EDC00EBA6B5 /* Typealias */,
 				64AE879826BE8957008D59E9 /* Protocols */,
 			);
@@ -385,6 +396,7 @@
 				6B14A34021F9C34A0011CF22 /* Answer.swift in Sources */,
 				6B14A32C21F9BAED0011CF22 /* MenuViewController.swift in Sources */,
 				6B14A33521F9BBAE0011CF22 /* AnswerTableViewCell.swift in Sources */,
+				64253D3426BEDA3D004B7CE7 /* AttributedString+DateFormatter.swift in Sources */,
 				6B14A33021F9BB260011CF22 /* DetailViewController.swift in Sources */,
 				64AE879E26BE8CBD008D59E9 /* Closures+Typealias.swift in Sources */,
 				6B14A33321F9BB910011CF22 /* QuestionTableViewCell.swift in Sources */,

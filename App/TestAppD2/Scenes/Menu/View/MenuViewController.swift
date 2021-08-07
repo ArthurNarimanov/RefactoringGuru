@@ -9,7 +9,7 @@
 import UIKit
 
 final class MenuViewController: UIViewController {
-	
+	// MARK: - Private properties
     @IBOutlet private weak var menuTableView: UITableView!
     
     override func viewDidLoad() {

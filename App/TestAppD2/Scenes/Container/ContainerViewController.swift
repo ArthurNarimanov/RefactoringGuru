@@ -9,7 +9,7 @@
 import UIKit
 
 final class ContainerViewController: UIViewController {
-
+	// MARK: - Private properties
     @IBOutlet private weak var tableContainerView: UIView!
     @IBOutlet private weak var mainContainerView: UIView!
     @IBOutlet private weak var leadingTableViewLayoutConstraint: NSLayoutConstraint!

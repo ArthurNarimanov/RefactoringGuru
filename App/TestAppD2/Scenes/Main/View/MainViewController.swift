@@ -9,7 +9,7 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-	
+	// MARK: - Private properties
 	private var activityIndicatorView: UIActivityIndicatorView!
 	private var questions: [Item] = []
 	private var refreshControl: UIRefreshControl?
@@ -37,8 +37,7 @@ final class MainViewController: UIViewController {
 		let indexPath: IndexPath? = tableView.indexPathForSelectedRow
 		let detailViewController = (segue.destination as? UINavigationController)?.topViewController as? DetailViewController
 		let item = questions[indexPath?.row ?? 0]
-		detailViewController?.currentQuestion = item
-		detailViewController?.loadAnswers()
+		detailViewController?.loadAnswers(by: item)
 		detailViewController?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
 		detailViewController?.navigationItem.leftItemsSupplementBackButton = true
 	}
@@ -155,17 +154,10 @@ private extension MainViewController {
 		numberOfPageToLoad = 1
 		getItems(removeAllObjects: true)
 		if refreshControl != nil {
-			refreshControl?.attributedTitle = getLastUpdateTitle()
+			let title = AttributedString.getTitleWithDateNow(by: "Last update:")
+			refreshControl?.attributedTitle = title
 			refreshControl?.endRefreshing()
 		}
-	}
-	
-	func getLastUpdateTitle() -> NSAttributedString? {
-		let formatter = DateFormatter()
-		formatter.dateFormat = "MMM d, h:mm a"
-		let title = "Last update: \(formatter.string(from: Date()))"
-		let attributesDictionary = [NSAttributedString.Key.foregroundColor : UIColor.white]
-		return NSAttributedString(string: title, attributes: attributesDictionary)
 	}
 	
 	func reload(by items: [Item]?, removeAllObjects: Bool) {
