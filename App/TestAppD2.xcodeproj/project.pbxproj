@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		642A27BD26B4851400003BF2 /* MainBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A27BC26B4851400003BF2 /* MainBuild.swift */; };
+		64AE879A26BE8962008D59E9 /* IdentifiableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AE879926BE8962008D59E9 /* IdentifiableClass.swift */; };
+		64AE879E26BE8CBD008D59E9 /* Closures+Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AE879D26BE8CBD008D59E9 /* Closures+Typealias.swift */; };
 		6B14A31821F9B9F60011CF22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B14A31721F9B9F60011CF22 /* AppDelegate.swift */; };
-		6B14A31A21F9B9F60011CF22 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B14A31921F9B9F60011CF22 /* MasterViewController.swift */; };
+		6B14A31A21F9B9F60011CF22 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B14A31921F9B9F60011CF22 /* MainViewController.swift */; };
 		6B14A31D21F9B9F60011CF22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B14A31B21F9B9F60011CF22 /* Main.storyboard */; };
 		6B14A31F21F9B9F80011CF22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B14A31E21F9B9F80011CF22 /* Assets.xcassets */; };
 		6B14A32221F9B9F80011CF22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B14A32021F9B9F80011CF22 /* LaunchScreen.storyboard */; };
@@ -30,9 +32,11 @@
 
 /* Begin PBXFileReference section */
 		642A27BC26B4851400003BF2 /* MainBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuild.swift; sourceTree = "<group>"; };
+		64AE879926BE8962008D59E9 /* IdentifiableClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableClass.swift; sourceTree = "<group>"; };
+		64AE879D26BE8CBD008D59E9 /* Closures+Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Closures+Typealias.swift"; sourceTree = "<group>"; };
 		6B14A31421F9B9F60011CF22 /* TestAppD2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAppD2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B14A31721F9B9F60011CF22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6B14A31921F9B9F60011CF22 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		6B14A31921F9B9F60011CF22 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6B14A31C21F9B9F60011CF22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6B14A31E21F9B9F80011CF22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B14A32121F9B9F80011CF22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,6 +73,31 @@
 				642A27BC26B4851400003BF2 /* MainBuild.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		6492E74D26BE8EDC00EBA6B5 /* Typealias */ = {
+			isa = PBXGroup;
+			children = (
+				64AE879D26BE8CBD008D59E9 /* Closures+Typealias.swift */,
+			);
+			path = Typealias;
+			sourceTree = "<group>";
+		};
+		64AE879726BE8913008D59E9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6492E74D26BE8EDC00EBA6B5 /* Typealias */,
+				64AE879826BE8957008D59E9 /* Protocols */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		64AE879826BE8957008D59E9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				64AE879926BE8962008D59E9 /* IdentifiableClass.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		64D96F4C26B1F245005B680C /* Support Files */ = {
@@ -116,13 +145,13 @@
 			path = "Main Storyboard";
 			sourceTree = "<group>";
 		};
-		64D96F5626B1F360005B680C /* Master */ = {
+		64D96F5626B1F360005B680C /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				64D96F6526B1F50D005B680C /* View */,
 				64D96F6726B1F515005B680C /* Model */,
 			);
-			path = Master;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		64D96F5726B1F36D005B680C /* Menu */ = {
@@ -172,7 +201,7 @@
 		64D96F6526B1F50D005B680C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6B14A31921F9B9F60011CF22 /* MasterViewController.swift */,
+				6B14A31921F9B9F60011CF22 /* MainViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,6 +270,7 @@
 				6B14A32921F9BA620011CF22 /* Scenes */,
 				64D96F5526B1F347005B680C /* Main Storyboard */,
 				64D96F6326B1F4F6005B680C /* Reusable Views */,
+				64AE879726BE8913008D59E9 /* Helpers */,
 			);
 			path = TestAppD2;
 			sourceTree = "<group>";
@@ -248,7 +278,7 @@
 		6B14A32921F9BA620011CF22 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				64D96F5626B1F360005B680C /* Master */,
+				64D96F5626B1F360005B680C /* Main */,
 				64D96F5726B1F36D005B680C /* Menu */,
 				64D96F5926B1F37C005B680C /* Container */,
 				64D96F5B26B1F389005B680C /* Detail */,
@@ -347,14 +377,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B14A31A21F9B9F60011CF22 /* MasterViewController.swift in Sources */,
+				6B14A31A21F9B9F60011CF22 /* MainViewController.swift in Sources */,
 				6B14A33A21F9C2E70011CF22 /* StoredData.swift in Sources */,
+				64AE879A26BE8962008D59E9 /* IdentifiableClass.swift in Sources */,
 				6B14A33C21F9C3090011CF22 /* CacheWithTimeInterval.swift in Sources */,
 				642A27BD26B4851400003BF2 /* MainBuild.swift in Sources */,
 				6B14A34021F9C34A0011CF22 /* Answer.swift in Sources */,
 				6B14A32C21F9BAED0011CF22 /* MenuViewController.swift in Sources */,
 				6B14A33521F9BBAE0011CF22 /* AnswerTableViewCell.swift in Sources */,
 				6B14A33021F9BB260011CF22 /* DetailViewController.swift in Sources */,
+				64AE879E26BE8CBD008D59E9 /* Closures+Typealias.swift in Sources */,
 				6B14A33321F9BB910011CF22 /* QuestionTableViewCell.swift in Sources */,
 				6B14A34221F9C36B0011CF22 /* Question.swift in Sources */,
 				6B14A32E21F9BB070011CF22 /* ContainerViewController.swift in Sources */,

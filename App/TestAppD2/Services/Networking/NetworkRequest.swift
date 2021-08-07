@@ -73,7 +73,9 @@ struct NetworkRequest {
 		var request = URLRequest(url: url)
 		request.httpMethod = "GET"
 		let task: URLSessionDataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-			completionHandler(data)
+			DispatchQueue.main.async {
+				completionHandler(data)
+			}
 		}
 		task.resume()
 	}

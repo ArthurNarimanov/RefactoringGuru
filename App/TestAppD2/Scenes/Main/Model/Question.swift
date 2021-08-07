@@ -19,7 +19,9 @@ struct Item: Decodable {
     let last_activity_date: Int?
     let title: String?
     var smartDateFormat: String? {
-        return Item.timeAgoString(from: Date.init(timeIntervalSince1970: TimeInterval(exactly: self.last_activity_date!)!) ?? Date())
+		let timeInterval = TimeInterval(exactly: self.last_activity_date ?? 0) ?? 0
+		let from = Date.init(timeIntervalSince1970: timeInterval)
+		return Item.timeAgoString(from: from)
     }
 
     static func timeAgoString(from date: Date?) -> String? {
@@ -29,7 +31,9 @@ struct Item: Decodable {
         let calendar = Calendar.current
         var components: DateComponents
         if let aDate = date {
-            components = calendar.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second], from: aDate, to: now)
+            components = calendar.dateComponents([.year, .month, .weekOfMonth, .day, .hour, .minute, .second],
+												 from: aDate,
+												 to: now)
             if components.year! > 0 {
                 formatter.allowedUnits = NSCalendar.Unit.year
             } else if components.month! > 0 {
