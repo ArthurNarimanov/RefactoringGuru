@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,20 +11,20 @@
             <rect key="frame" x="0.0" y="0.0" width="533" height="118"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gEb-Bd-WQc" id="3Vb-aj-F2F">
-                <rect key="frame" x="0.0" y="0.0" width="533" height="117.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="533" height="118"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UI2-f1-s54">
-                        <rect key="frame" x="5" y="5" width="523" height="107.5"/>
+                        <rect key="frame" x="5" y="5" width="523" height="108"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfF-og-tDV">
-                                <rect key="frame" x="43" y="59" width="26.5" height="30.5"/>
+                                <rect key="frame" x="43" y="59" width="26.5" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKf-P4-XIg">
-                                <rect key="frame" x="481.5" y="62.5" width="21.5" height="25"/>
+                                <rect key="frame" x="481.5" y="62.5" width="21.5" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -52,13 +48,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Автор:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svc-IQ-NIP">
-                                <rect key="frame" x="8" y="59" width="27" height="30.5"/>
+                                <rect key="frame" x="8" y="59" width="27" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ответы:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaS-gO-iaW">
-                                <rect key="frame" x="427" y="47" width="32.5" height="17"/>
+                                <rect key="frame" x="426.5" y="47" width="33" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -100,11 +96,11 @@
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="Cell"/>
             <connections>
-                <outlet property="autorLabel" destination="JfF-og-tDV" id="bN2-IL-Byb"/>
+                <outlet property="authorLabel" destination="JfF-og-tDV" id="bN2-IL-Byb"/>
                 <outlet property="corneredView" destination="UI2-f1-s54" id="hFv-Xt-Sf0"/>
                 <outlet property="dateModificationLabel" destination="VKf-P4-XIg" id="ujD-Dm-QrT"/>
                 <outlet property="numberOfAnswerLabel" destination="EXZ-A8-kDm" id="KpA-a3-LbB"/>
-                <outlet property="quesionLabel" destination="HLq-55-4wg" id="n8v-dm-Yav"/>
+                <outlet property="questionLabel" destination="HLq-55-4wg" id="n8v-dm-Yav"/>
             </connections>
             <point key="canvasLocation" x="-2085.5999999999999" y="-68.365817091454275"/>
         </tableViewCell>

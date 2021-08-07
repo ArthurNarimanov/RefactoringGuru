@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Answer: Decodable {
+struct Answer: Decodable {
     var items: [AnswerItem]?
 }
 

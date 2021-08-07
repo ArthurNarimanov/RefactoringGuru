@@ -8,34 +8,49 @@
 
 import UIKit
 
-class QuestionTableViewCell: UITableViewCell {
+final class QuestionTableViewCell: UITableViewCell {
+	
+	//	MARK: - Private Properties
+	@IBOutlet private weak var questionLabel: UILabel!
+	@IBOutlet private weak var authorLabel: UILabel!
+	@IBOutlet private weak var dateModificationLabel: UILabel!
+	@IBOutlet private weak var numberOfAnswerLabel: UILabel!
+	@IBOutlet private weak var corneredView: UIView!
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		setupCorneredView()
+	}
+	
+	//	MARK: - Public Methods
+	func fill(_ question: Item?) {
+		questionLabel.text = question?.title
+		authorLabel.text = question?.owner?.display_name
+		numberOfAnswerLabel.text = String(format: "%li", Int(question?.answer_count ?? 0))
+		let lastActivityDate = question?.last_activity_date ?? 0
+		setTextModificationLabel(by: lastActivityDate,
+								 with: question?.smartDateFormat)
+	}
+}
 
-    @IBOutlet weak var quesionLabel: UILabel!
-    @IBOutlet weak var autorLabel: UILabel!
-    @IBOutlet var dateModificationLabel: UILabel!
-    @IBOutlet weak var numberOfAnswerLabel: UILabel!
-    @IBOutlet weak var corneredView: UIView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        corneredView.layer.cornerRadius = 20
-        corneredView.layer.masksToBounds = false
-        corneredView.layer.shadowOpacity = 0.2
-        corneredView.layer.shadowColor = UIColor.black.cgColor
-        corneredView.layer.shadowOffset = CGSize.zero
-        corneredView.layer.shadowRadius = 5
-    }
-
-    func fill(_ question: Item?) {
-        quesionLabel.text = question?.title
-        autorLabel.text = question?.owner?.display_name
-        numberOfAnswerLabel.text = String(format: "%li", Int(question?.answer_count ?? 0))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm d-MM-yyyy"
-        if let aFormat = question?.smartDateFormat {
-            let aDate = Date.init(timeIntervalSince1970: TimeInterval(exactly: ((question?.last_activity_date)!))!)
-            dateModificationLabel.text = "\(dateFormatter.string(from: aDate)) \(aFormat)"
-        }
-    }
-
+//	MARK: - Private Methods
+private extension QuestionTableViewCell {
+	func setupCorneredView() {
+		corneredView.layer.cornerRadius = 20
+		corneredView.layer.masksToBounds = false
+		corneredView.layer.shadowOpacity = 0.2
+		corneredView.layer.shadowColor = UIColor.black.cgColor
+		corneredView.layer.shadowOffset = CGSize.zero
+		corneredView.layer.shadowRadius = 5
+	}
+	
+	func setTextModificationLabel(by lastActivityDate: Int,
+								  with smartDateFormat: String?) {
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "HH:mm d-MM-yyyy"
+		if let aFormat = smartDateFormat {
+			let aDate = Date.init(timeIntervalSince1970: TimeInterval(exactly: lastActivityDate)!)
+			dateModificationLabel.text = "\(dateFormatter.string(from: aDate)) \(aFormat)"
+		}
+	}
 }
