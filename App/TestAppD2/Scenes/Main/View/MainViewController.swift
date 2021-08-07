@@ -15,11 +15,11 @@ final class MainViewController: UIViewController {
 	private var refreshControl: UIRefreshControl?
 	private var loadMoreStatus = false
 	private var numberOfPageToLoad: Int = 1
-	private var requestedTag = ArrayOfTags.shared[0]
+	private var requestedTag: String = Tags.objc.rawValue
 	
-	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var leadingTableViewLayoutConstraint: NSLayoutConstraint!
-	@IBOutlet weak var trailingTableViewLayoutConstraint: NSLayoutConstraint!
+	@IBOutlet private weak var tableView: UITableView!
+	@IBOutlet private weak var leadingTableViewLayoutConstraint: NSLayoutConstraint!
+	@IBOutlet private weak var trailingTableViewLayoutConstraint: NSLayoutConstraint!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -193,7 +193,8 @@ private extension MainViewController {
 	
 	@objc func requestedTagNotification(_ notification: Notification?) {
 		activityIndicatorView.startAnimating()
-		requestedTag = notification?.object as! String
+		let tag = notification?.object as? String
+		requestedTag = tag ?? Tags.objc.rawValue
 		numberOfPageToLoad = 1
 		getItems(removeAllObjects: true)
 	}

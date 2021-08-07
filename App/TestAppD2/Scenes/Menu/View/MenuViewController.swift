@@ -8,28 +8,33 @@
 
 import UIKit
 
-class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var menuTableView: UITableView!
+final class MenuViewController: UIViewController {
+	
+    @IBOutlet private weak var menuTableView: UITableView!
     
     override func viewDidLoad() {
+		super.viewDidLoad()
         menuTableView.delegate = self
         menuTableView.dataSource = self
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ArrayOfTags.shared.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "CellForMenuTableView", for: indexPath)
-        cell.textLabel?.text = ArrayOfTags.shared[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        NotificationCenter.default.post(name: NSNotification.Name("RequestedTagNotification"),
-                                        object: ArrayOfTags.shared[indexPath.row])
-    }
 
+}
+
+//MARK: - UITableViewDelegate, UITableViewDataSource
+extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return Tags.allCases.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "CellForMenuTableView",
+																  for: indexPath)
+		cell.textLabel?.text = Tags.allCases[indexPath.row].rawValue
+		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		NotificationCenter.default.post(name: NSNotification.Name("RequestedTagNotification"),
+										object: Tags.allCases[indexPath.row].rawValue)
+	}
 }
